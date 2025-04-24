@@ -1,0 +1,99 @@
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    /* ===== Colors ===== */
+    --body-color: #E4E9F7;
+    --navbar-color: #FFF;
+    --navbar-shadow: #707070;
+    --navbar-border: #CCC;
+    --primary-color: #0c0c0c;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+body.dark {
+    --body-color: #18191a;
+    --navbar-color: #242526;
+    --navbar-shadow: #5c5c5c;
+    --primary-color: #3a3b3c;
+    --primary-color-light: #3a3b3c;
+    --toggle-color: #fff;
+    --text-color: #ccc;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: var(--navbar-color);
+    padding: 10px;
+    justify-content: flex-end;
+    margin: 20px 20px 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px var(--navbar-shadow);
+    transition: var(--tran-05);
+}
+
+.navbar-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--navbar-border);
+    margin-left: 10px;
+    transition: var(--tran-03);
+}
+
+.navbar-item:hover {
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.bx {
+    color: var(--text-color);
+}
+
+.navbar-item:hover .bx,
+.navbar-item:hover .item,
+.navbar-item:hover .total {
+    color: var(--primary-color-light);
+    transition: var(--tran-03);
+}
+
+body.dark .navbar-item:hover .bx,
+body.dark .navbar-item:hover .item,
+body.dark .navbar-item:hover .total {
+    color: var(--text-color); /* Keep text color unchanged */
+}
+
+.navbar-item:last-child {
+    border-radius: 20px;
+    width: auto;
+    padding: 0 15px;
+}
+
+.navbar-item .item {
+    margin-left: 5px;
+    color: var(--text-color);
+}
+
+.navbar-item .total {
+    margin-left: 15px;
+    color: var(--text-color);
+}

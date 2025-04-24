@@ -1,0 +1,218 @@
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    /* ===== Colors ===== */
+    --body-color: #E4E9F7;
+    --navbar-color: #FFF;
+    --navbar-shadow: #707070;
+    --navbar-border: #CCC;
+    --primary-color: #0c0c0c;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+body.dark {
+    /* ===== Colors ===== */
+    --body-color: #18191a;
+    --navbar-color: #242526;
+    --navbar-shadow: #5c5c5c;
+    --primary-color: #3a3b3c;
+    --primary-color-light: #3a3b3c;
+    --toggle-color: #fff;
+    --text-color: #ccc;
+}
+
+.cont-prod {
+    background-color: var(--navbar-color);
+    height: calc(100% - 40px);
+    margin: 20px 20px 20px 30px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px var(--navbar-shadow);
+    transition: var(--tran-05);
+}
+
+.cont-table {
+    height: 90%;
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    background-color: var(--navbar-color);
+    transition: var(--tran-05);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: var(--text-color);
+    vertical-align: middle;
+    height: 100px;
+}
+
+th {
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.actions button {
+    padding: 6px 12px;
+    border: 1px solid #007bff; /* Make sure the border is solid */
+    background-color: transparent;
+    color: #007bff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actions button:hover {
+    background-color: #f0f0f0; /* Light background on hover */
+}
+
+.actions button:last-child {
+    border: 1px solid #dc3545; /* Make sure the border is solid */
+    background-color: transparent;
+    color: #dc3545;
+}
+
+.actions button:last-child:hover {
+    background-color: #f0f0f0; /* Light background on hover */
+}
+
+.cont-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.add-product-button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #4CAF50;
+    font-size: 16px;
+    border-radius: 5px;
+    gap: 10px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+/* Make the icon larger */
+.add-product-button i {
+    font-size: 20px;
+}
+
+/* Add a custom hover effect */
+.add-product-button:hover {
+    background-color: #f0f0f0; /* Light background on hover */
+    color: #45a049; /* Change text color */
+}
+
+.overlay-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+
+.overlay-content {
+    background-color: var(--navbar-color);
+    height: calc(90% - 60px);
+    width: calc(50% - 40px);
+    margin: 20px 20px 20px 30px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px var(--navbar-shadow);
+}
+
+.overlay-content h2 {
+    margin-top: 0;
+    margin-bottom: 2vh;
+    font-size: 2vw;
+    color: var(--text-color);
+}
+
+.form-group {
+    margin-bottom: 2vh;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5vh;
+    font-size: 1vw;
+    color: var(--text-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1vh;
+    border: 1px solid var(--navbar-border);
+    border-radius: 0.8vw;
+    font-size: 1vw;
+    box-sizing: border-box;
+}
+
+.form-group input[type="file"] {
+    padding: 0.6vh;
+}
+
+.price-group {
+    margin-bottom: 2vh;
+    text-align: right;
+}
+
+.price-group input {
+    width: 100%;
+    padding-right: 100px;
+    box-sizing: border-box;
+}
+
+.price-group .add-button {
+    padding: 0.8vh 1.5vw;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0.8vw;
+    cursor: pointer;
+    font-size: 1vw;
+    margin-top: 2vh;
+    white-space: nowrap;
+    width: auto;
+    display: inline-block;
+}
+
+.price-group .add-button:hover {
+    background-color: #0056b3;
+}

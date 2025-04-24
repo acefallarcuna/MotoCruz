@@ -1,0 +1,85 @@
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    /* ===== Colors ===== */
+    --body-color: #E4E9F7;
+    --navbar-color: #FFF;
+    --navbar-shadow: #707070;
+    --navbar-border: #CCC;
+    --primary-color: #0c0c0c;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+body.dark {
+    /* ===== Colors ===== */
+    --body-color: #18191a;
+    --navbar-color: #242526;
+    --navbar-shadow: #5c5c5c;
+    --primary-color: #3a3b3c;
+    --primary-color-light: #3a3b3c;
+    --toggle-color: #fff;
+    --text-color: #ccc;
+}
+
+.cont-prod {
+    background-color: var(--navbar-color);
+    height: calc(100% - 120px);
+    margin: 20px 20px 20px 30px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px var(--navbar-shadow);
+    transition: var(--tran-05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    background-color: var(--navbar-color);
+    transition: var(--tran-05);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: var(--text-color);
+    vertical-align: middle;
+    height: 100px;
+}
+
+th {
+    font-weight: bold;
+}
+
+.action button {
+    padding: 6px 12px;
+    border: 1px solid #007bff; /* Make sure the border is solid */
+    background-color: transparent;
+    color: #007bff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.action button:hover {
+    background-color: #f0f0f0; /* Light background on hover */
+}
+
+.action button i {
+    color: #007bff;
+}
