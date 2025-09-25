@@ -1,5 +1,6 @@
 <?php
     require '_config/_auth.php';
+    require '_config/_fetch.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +11,9 @@
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="css/inventory.css">
     <link rel="stylesheet" href="css/_sidenav.css">
+    <link rel="stylesheet" href="css/_navbar.css">
+    <link rel="stylesheet" href="css/_warning.css">
+    <link rel="stylesheet" href="css/_product.css">
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -19,9 +23,16 @@
     <?php require_once 'partials/_sidenav.php'; ?>
 
     <section class="home">
+        <nav class="navbar">
+            <!-- Search -->
+            <div class="navbar-item search-container">
+                <input type="text" placeholder="Search products..." class="search-input" />
+            </div>
+        </nav>
+
         <div class="cont-prod">
             <div class="cont-table">
-                <table>
+                <table id="productTable">
                     <thead>
                         <tr>
                         <th>Image</th>

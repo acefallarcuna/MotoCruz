@@ -1,0 +1,114 @@
+/* Overlay background */
+.overlay-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+}
+
+/* Overlay container */
+.overlay-content {
+    background: #fff;
+    border-radius: 10px;
+    max-width: 60vw;
+    width: 90%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Scrollable inner content */
+.overlay-inner {
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: calc(90vh - 40px); /* ensures inner doesn't overflow */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Form groups */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Inputs */
+input[type=text],
+input[type=number],
+input[type=file] {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Price group */
+.price-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Button container */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+/* Update button */
+.update-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s ease;
+}
+
+.update-button:hover {
+    background-color: #45a049;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+    .overlay-content {
+        max-width: 95vw;
+    }
+    .update-button {
+        width: 100%;
+    }
+    .overlay-inner {
+        gap: 6px;
+    }
+}
+
+/* Remove number input arrows */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}

@@ -1,0 +1,116 @@
+/* _warning.css - self-contained warning popup styles */
+
+/* Background layer */
+.ws-bg {
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 10050;
+}
+
+/* Popup box */
+.ws-box {
+    background: #fff;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 420px;
+    max-height: 420px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Inner content */
+.ws-inner {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 160px;
+    max-height: calc(420px - 60px);
+}
+
+/* Title */
+.ws-title {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: #d32f2f; /* nicer warning red */
+    text-align: center;
+}
+
+/* Subtitle / paragraph */
+.ws-sub {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+/* Item list: left aligned within the centered box */
+.ws-list {
+    margin: 8px 0 12px 0;
+    padding-left: 18px;
+    text-align: left;
+    overflow: auto;
+    flex: 1;                /* takes available space so button sits at bottom */
+    min-height: 30px;
+    max-height: 220px;
+}
+.ws-list li {
+    margin: 6px 0;
+    font-size: 14px;
+}
+.ws-list .ws-stock {
+    color: #666;
+    font-weight: 500;
+}
+
+/* Button wrapper - pinned to bottom */
+.ws-button-wrap {
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+    margin-top: auto; /* pushes it to the box bottom */
+}
+
+/* Button (copied style of update-button so it matches your Add Product look) */
+.ws-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.18s ease;
+}
+.ws-button:hover {
+    background-color: #45a049;
+}
+
+/* small-screens */
+@media (max-width: 480px) {
+    .ws-box {
+        max-width: 95vw;
+        max-height: 90vh;
+    }
+    .ws-button {
+        width: 100%;
+    }
+}
+
+.low-stock {
+  color: red;
+}
+
+.mid-stock {
+  color: orange;
+}

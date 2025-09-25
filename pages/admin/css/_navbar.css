@@ -40,12 +40,14 @@ body.dark {
     align-items: center;
     background-color: var(--navbar-color);
     padding: 10px;
-    justify-content: flex-end;
+    justify-content: flex-end;  /* keep all items aligned right */
     margin: 20px 20px 20px 30px;
     border-radius: 10px;
     box-shadow: 0 2px 5px var(--navbar-shadow);
     transition: var(--tran-05);
+    gap: .2vw;  /* add spacing between items */
 }
+
 
 .navbar-item {
     cursor: pointer;
@@ -96,4 +98,54 @@ body.dark .navbar-item:hover .total {
 .navbar-item .total {
     margin-left: 15px;
     color: var(--text-color);
+}
+
+/* Search */
+/* Make the search container wider and rectangular */
+.navbar-item.search-container {
+    width: 250px;      /* wider */
+    height: 40px;      /* keep same height */
+    border-radius: 20px; /* rounded rectangle */
+    border: 1.5px solid var(--navbar-border);
+    padding: 0 15px;
+    cursor: auto; /* normal cursor */
+}
+
+/* Remove default navbar-item flex center */
+.navbar-item.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* align text left */
+}
+
+/* Style the input inside search container */
+.navbar-item.search-container .search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-color);
+    background-color: transparent;
+}
+
+/* On focus, highlight border */
+.navbar-item.search-container:focus-within {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+/* Disable hover styles on the search input container */
+.navbar-item.search-container:hover {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-color: var(--navbar-border) !important;
+    cursor: text; /* keep text cursor */
+}
+
+.navbar-item.search-container:hover .bx,
+.navbar-item.search-container:hover .item,
+.navbar-item.search-container:hover .total {
+    color: var(--primary-color);
 }

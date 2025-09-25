@@ -1,107 +1,121 @@
-document.querySelector(".add-product-button").addEventListener("click", () => {
-    const overlay = document.createElement("div");
-    overlay.className = "overlay-bg";
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("JS loaded!");
 
-    const content = document.createElement("div");
-    content.className = "overlay-content";
+    const addButton = document.querySelector(".add-product-button"); // Assuming you have a button to trigger Add Product
 
-    content.innerHTML = `
-      <h2>Add New Product</h2>
-      <div class="form-group">
-        <label>Upload Image</label>
-        <input type="file" accept="image/*">
-      </div>
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" placeholder="Product Name">
-      </div>
-      <div class="form-group">
-        <label>Type</label>
-        <input type="text" placeholder="Product Type">
-      </div>
-      <div class="form-group">
-        <label>Brand</label>
-        <input type="text" placeholder="Product Brand">
-      </div>
-      <div class="form-group">
-        <label>Stock</label>
-        <input type="number" placeholder="Stock Quantity">
-      </div>
-      <div class="form-group">
-        <label>Price</label>
-        <div class="price-group">
-            <input type="number" step="0.01" placeholder="Product Price">
-            <button class="add-button">Add</button>
-        </div>
-      </div>
-    `;
+    addButton.addEventListener("click", function () {
+        // Create overlay
+        const overlay = document.createElement("div");
+        overlay.className = "overlay-bg";
 
-    overlay.appendChild(content);
-    document.body.appendChild(overlay);
+        const content = document.createElement("div");
+        content.className = "overlay-content";
 
-    // Wait for next frame before triggering the fade-in
-    requestAnimationFrame(() => {
-        overlay.style.opacity = '1';
-        overlay.style.pointerEvents = 'auto';
-    });
+        const inner = document.createElement("div");
+        inner.className = "overlay-inner";
 
-    // Close modal when clicking outside content
-    overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) {
-            overlay.style.opacity = '0';
-            overlay.style.pointerEvents = 'none';
-            setTimeout(() => overlay.remove(), 300); // wait for fade-out
-        }
-    });
-  
-    // Function to generate a random alphanumeric prod_id
-    function generateProdId() {
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        let prodId = '';
-        for (let i = 0; i < 6; i++) {
-            prodId += characters.charAt(Math.floor(Math.random() * characters.length));
-        }
-        return prodId;
-    }
+        inner.innerHTML = `
+            <h2>Add Product</h2>
+            <div class="form-group">
+                <label>Upload Image</label>
+                <input type="file" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" placeholder="Product Name">
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <input type="text" placeholder="Product Type">
+            </div>
+            <div class="form-group">
+                <label>Brand</label>
+                <input type="text" placeholder="Product Brand">
+            </div>
+            <div class="form-group">
+                <label>Stock</label>
+                <input type="number" placeholder="Stock Quantity">
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input type="number" placeholder="Product Price">
+            </div>
+            <div class="button-container">
+                <button class="update-button">Add Product</button>
+            </div>
+        `;
 
-    // Add event listener to the dynamically added "Add" button
-    content.querySelector(".add-button").addEventListener("click", function (e) {
-        e.preventDefault();
+        content.appendChild(inner);
+        overlay.appendChild(content);
+        document.body.appendChild(overlay);
 
-        // Get form values
-        const prodName = content.querySelector('input[placeholder="Product Name"]').value;
-        const prodType = content.querySelector('input[placeholder="Product Type"]').value;
-        const prodBrand = content.querySelector('input[placeholder="Product Brand"]').value;
-        const prodStock = content.querySelector('input[placeholder="Stock Quantity"]').value;
-        const prodPrice = content.querySelector('input[placeholder="Product Price"]').value;
-        const prodImg = content.querySelector('input[type="file"]').files[0];
-        const prodId = generateProdId();
+        requestAnimationFrame(() => {
+            overlay.style.opacity = '1';
+            overlay.style.pointerEvents = 'auto';
+        });
 
-        const formData = new FormData();
-        formData.append('prod_id', prodId);
-        formData.append('prod_name', prodName);
-        formData.append('prod_type', prodType);
-        formData.append('prod_brand', prodBrand);
-        formData.append('prod_stock', prodStock);
-        formData.append('prod_price', prodPrice);
-        if (prodImg) formData.append('prod_img', prodImg);
-
-        fetch('add_product.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Product added successfully!');
-                overlay.remove(); // Close modal after success
-            } else {
-                alert('Error: ' + data.message);
+        // Close overlay when clicking outside
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) {
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+                setTimeout(() => overlay.remove(), 300);
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An unexpected error occurred.');
+        });
+
+        // Price input formatting
+        const priceInput = inner.querySelector('input[placeholder="Product Price"]');
+        priceInput.addEventListener('blur', () => {
+            let val = parseFloat(priceInput.value);
+            if (isNaN(val)) val = 0;
+            priceInput.value = val.toFixed(2);
+        });
+        priceInput.addEventListener('input', () => {
+            priceInput.value = priceInput.value.replace(/[^\d.]/g, '');
+        });
+
+        inner.querySelector(".update-button").addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const prodName = inner.querySelector('input[placeholder="Product Name"]').value;
+            const prodType = inner.querySelector('input[placeholder="Product Type"]').value;
+            const prodBrand = inner.querySelector('input[placeholder="Product Brand"]').value;
+            const prodStock = inner.querySelector('input[placeholder="Stock Quantity"]').value;
+            const prodPrice = inner.querySelector('input[placeholder="Product Price"]').value;
+            const prodImg = inner.querySelector('input[type="file"]').files[0];
+
+            if (!prodName || !prodType || !prodBrand || !prodStock || !prodPrice) {
+                alert("Please fill in all fields before adding.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('prod_name', prodName);
+            formData.append('prod_type', prodType);
+            formData.append('prod_brand', prodBrand);
+            formData.append('prod_stock', prodStock);
+            formData.append('prod_price', prodPrice);
+            if (prodImg) formData.append('prod_img', prodImg);
+
+            fetch('/motocruz/pages/admin/add_product.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(text => {
+                const data = JSON.parse(text);
+                if (data.success) {
+                    alert('Product added successfully!');
+                    overlay.remove(); // Close overlay
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An unexpected error occurred.');
+            });
         });
     });
 });
